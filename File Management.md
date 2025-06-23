@@ -60,7 +60,7 @@ int main(void)
 }
 ```
 3.Program to create a directory in current directory.
-```
+```c
 #include<stdio.h>
 #include<sys/stat.h>
 #include<sys/types.h>
@@ -77,7 +77,7 @@ int main()
 }
 ```
 4. Program to check whether txt file is present or not.
-```
+```c
 #include<stdio.h>
 #include<fcntl.h>
 #include<unistd.h>
@@ -97,7 +97,7 @@ int main()
 }
 ```
 5.Program to remove the empty directory.
-```
+```c
 #include<stdio.h>
 #include<unistd.h>
 int main()
@@ -114,7 +114,7 @@ int main()
 }
 ```
 6.Program to rename the old text to an new text.
-```
+```c
 #include<stdio.h>
 int main()
 {
@@ -132,7 +132,7 @@ int main()
 }
 ```
 7. Program to delete a .txt file.
-```
+```c
 #include<stdio.h>
 #include<unistd.h>
 #include<fcntl.h>
@@ -151,7 +151,7 @@ int main()
 }
 ```
 8.program to copy the contents of one file to another.
-```
+```c
 #include<stdio.h>
 #include<unistd.h>
 #include<fcntl.h>
@@ -183,7 +183,7 @@ int main()
 }
 ```
 9.Program to move a file from one directory to another directory.
-```
+```c
 #include <stdio.h>
 int main()
 {
@@ -200,7 +200,7 @@ int main()
 }
 ```
 10.program to print the files in an current directory.
-```
+```c
 #include <stdio.h>
 #include <dirent.h>
 int main() {
@@ -219,7 +219,7 @@ int main() {
 }
 ```
 11.Program to get the size of an file.
-```
+```c
 #include <stdio.h>
 #include <sys/stat.h>
 int main() {
@@ -235,7 +235,7 @@ int main() {
 }
 ```
 12.Program to create a new directory in the parent directory.
-```
+```c
 #include<stdio.h>
 #include<sys/stat.h>
 #include<errno.h>
@@ -254,7 +254,7 @@ int main()
 }
 ```
 13.Program to recursivley list all files and directories in a given directory.
-```
+```c
 #include<stdio.h>
 #include<stdlib.h>
 #include<dirent.h>
