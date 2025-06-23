@@ -1,6 +1,6 @@
 ## Questions and Answers
 1.program to create a new text file and write "Hello,world!" to it.
-```
+```c
 #include<stdio.h>
 #include<string.h>
 #include<unistd.h>
