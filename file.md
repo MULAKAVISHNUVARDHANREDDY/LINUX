@@ -27,7 +27,7 @@ int main(void)
 }
 ```
 2.program to open an existing text file and display its contents.
-```
+```c
 #include<stdio.h>
 #include<string.h>
 #include<unistd.h>
