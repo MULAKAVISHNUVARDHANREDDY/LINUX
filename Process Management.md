@@ -88,7 +88,7 @@ int main()
 }
 ```
 5. program in C to create a zombie process and how to avoid it.
-   -To see whether Zombie process is created or not use Command "top" in the another terminal.
+   - To see whether Zombie process is created or not use Command "top" in the another terminal.
 ```
     -create a Zombie Process.
 #include<stdio.h>
