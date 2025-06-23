@@ -87,8 +87,10 @@ int main()
     return 0;
 }
 ```
-5. program in C to create a zombie process.
+5. program in C to create a zombie process and how to avoid it.
+   -To see whether Zombie process is created or not use Command "top" in the another terminal.
 ```
+    -create a Zombie Process.
 #include<stdio.h>
 #include<stdlib.h>
 #include<unistd.h>
@@ -113,4 +115,31 @@ int main()
     }
     return 0;
 }
----
+                ----------------------------
+    -To Avoid the Zombie Process.
+#include<stdio.h>
+#include<stdlib.h>
+#include<unistd.h>
+int main()
+{
+    int pid=fork();
+    if(pid<0)
+    {
+        perror("fork failed.");
+        exit(1);
+    }
+    if(pid==0)
+    {
+        printf("Child process ID: %d",getpid());
+        exit(0);
+    }
+    else
+    {
+        int status;
+        wait(&status);
+        printf("Parent PID=%d.No Zombie created.",getpid());
+    }
+    return 0;
+}
+```
+6.
