@@ -295,7 +295,8 @@ int main(int argc,char *argv[])
 	return 0;
 }
 ```
-/* creating myfifpo
+14.Program for creating myfifpo
+```
 #include<stdio.h>
 #include<sys/ipc.h>
 int main()
@@ -308,7 +309,7 @@ int main()
         }
         printf("fifo is created\n");
 }
-*/
+```
 /* //Delete all files in an directory according to named.
 #include <stdio.h>
 #include <stdlib.h>
