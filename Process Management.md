@@ -19,7 +19,7 @@ int main()
 }
 ```
 2.Program to Illustrate the execvp() function.
-```
+```c
 #include<stdio.h>
 #include<stdlib.h>
 #include<unistd.h>
@@ -36,7 +36,7 @@ int main()
 }
 ```
 3.Program to create a child process using fork() and printf its PID.
-```
+```c
 #include<stdio.h>
 #include<stdlib.h>
 #include<unistd.h>
@@ -56,7 +56,7 @@ int main()
 ```
 4.Program to create multiple child processes using fork() and display their 
 PIDs. 
-```
+```c
 #include<stdio.h>
 #include<stdlib.h>
 #include<unistd.h>
@@ -88,8 +88,8 @@ int main()
 }
 ```
 5. program in C to create a zombie process and how to avoid it.
-   - To see whether Zombie process is created or not use Command "top" in the another terminal.
-```
+   > To see whether Zombie process is created or not use Command "top" in the another terminal.
+```c
     -create a Zombie Process.
 #include<stdio.h>
 #include<stdlib.h>
