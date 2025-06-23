@@ -1,4 +1,6 @@
-/* //program to create a new text file and write "Hello,world!" to it
+## Questions and Answers
+1.program to create a new text file and write "Hello,world!" to it.
+```
 #include<stdio.h>
 #include<string.h>
 #include<unistd.h>
@@ -23,8 +25,9 @@ int main(void)
   close(fd);
   return 0;
 }
-*/
-/* // program to open an existing text file and display its contents.
+```
+2.program to open an existing text file and display its contents.
+```
 #include<stdio.h>
 #include<string.h>
 #include<unistd.h>
@@ -55,8 +58,9 @@ int main(void)
 	close (fd);
 	return 0;
 }
-*/
-/* //create a directory in current directory
+```
+3.Program to create a directory in current directory.
+```
 #include<stdio.h>
 #include<sys/stat.h>
 #include<sys/types.h>
@@ -71,8 +75,9 @@ int main()
 	printf("Directory 'Test' created sucessfully!\n");
 	return 0;
 }
-*/
-/* //check whether txt file is present or not.
+```
+4. Program to check whether txt file is present or not.
+```
 #include<stdio.h>
 #include<fcntl.h>
 #include<unistd.h>
@@ -90,8 +95,9 @@ int main()
 	}
 	return 0;
 }
-*/
-/* // remove the empty directory.
+```
+5.Program to remove the empty directory.
+```
 #include<stdio.h>
 #include<unistd.h>
 int main()
@@ -106,8 +112,9 @@ int main()
 	}
 	return 0;
 }
-*/
-/* //program to rename the old text to an new text.
+```
+6.Program to rename the old text to an new text.
+```
 #include<stdio.h>
 int main()
 {
@@ -123,8 +130,9 @@ int main()
 	}
 	return 0;
 }
-*/
-/* // delete a file.txt
+```
+7. Program to delete a .txt file.
+```
 #include<stdio.h>
 #include<unistd.h>
 #include<fcntl.h>
@@ -141,8 +149,9 @@ int main()
 	printf("File \"%s\" deleted successfully.\n", filename);
 	return 0;
 }
-*/
-/* //program to copy the contents of one file to another?
+```
+8.program to copy the contents of one file to another.
+```
 #include<stdio.h>
 #include<unistd.h>
 #include<fcntl.h>
@@ -172,8 +181,9 @@ int main()
 	printf("File Copied sucessfully\n");
 	return 0;
 }
-*/
-/* //move from one directory to another directory.
+```
+9.Program to move a file from one directory to another directory.
+```
 #include <stdio.h>
 int main()
 {
@@ -188,8 +198,9 @@ int main()
 
     return 0;
 }
-*/
-/* // program to print the files in an current directory.
+```
+10.program to print the files in an current directory.
+```
 #include <stdio.h>
 #include <dirent.h>
 int main() {
@@ -206,25 +217,25 @@ int main() {
     closedir(dir);
     return 0;
 }
-*/
-/* check whether the filename is present or not.
+```
+11.Program to get the size of an file.
+```
 #include <stdio.h>
 #include <sys/stat.h>
 int main() {
     const char *filename = "destination.txt";
     struct stat file_stat;
-
     // Get file information
     if (stat(filename, &file_stat) == 0) {
         printf("Size of \"%s\": %ld bytes\n", filename, file_stat.st_size);
     } else {
         perror("Error retrieving file size");
     }
-
     return 0;
 }
-*/
-/* //create a new directory in the parent directory.
+```
+12.Program to create a new directory in the parent directory.
+```
 #include<stdio.h>
 #include<sys/stat.h>
 #include<errno.h>
@@ -241,8 +252,9 @@ int main()
 	}
 	return 0;
 }
-*/
-/* //recursivley list all files and directories in a given directory.
+```
+13.Program to recursivley list all files and directories in a given directory.
+```
 #include<stdio.h>
 #include<stdlib.h>
 #include<dirent.h>
@@ -282,7 +294,7 @@ int main(int argc,char *argv[])
 	list_directory(dir_path);
 	return 0;
 }
-*/
+```
 /* creating myfifpo
 #include<stdio.h>
 #include<sys/ipc.h>
