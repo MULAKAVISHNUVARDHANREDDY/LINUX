@@ -310,7 +310,8 @@ int main()
         printf("fifo is created\n");
 }
 ```
-/* //Delete all files in an directory according to named.
+15. Program to Delete all files in an "test" directory.
+```c
 #include <stdio.h>
 #include <stdlib.h>
 #include <fcntl.h>
@@ -358,8 +359,9 @@ int main()
 	delete_files(dir_path);
 	return 0;
 }
-*/
-/*  //count the number of lines in an text file.
+```
+16.Program to count the number of lines in an text file.
+```c
 #include<stdio.h>
 #include<fcntl.h>
 #include<unistd.h>
@@ -393,8 +395,9 @@ int main()
 	}
 	return 0;
 }
-*/
-/* //append the given text in named.txt file.
+```
+17.Program to append the given text in named.txt file.
+```c
 #include<stdio.h>
 #include<fcntl.h>
 #include<unistd.h>
@@ -420,8 +423,9 @@ int main()
 	printf("Appened \"Goodbye!\"to\"%s\" sucessfully.\n",filename);
 	return 0;
 }
-*/
-/* //program to change the permissions of the file to read only.
+```
+18.program to change the permissions of the file to read only.
+```c
 #include<stdio.h>
 #include<sys/stat.h>
 int main()
@@ -438,8 +442,9 @@ int main()
 	}
 	return 0;
 }
-*/
-/* change the ownership of an file.
+```
+19.Program to change the ownership of an file.
+```c
 #include<stdio.h>
 #include<stdlib.h>
 #include<unistd.h>
@@ -463,8 +468,9 @@ int main()
 	printf("Owernship of '%s' changed to user'%s'.\n",filename,new_owner);
 	return 0;
 }
-*/
-/* // program to get the last modified timestamp of a file.
+```
+20.program to get the last modified timestamp of a file.
+```
 #include<stdio.h>
 #include<sys/stat.h>
 #include<time.h>
@@ -483,40 +489,9 @@ int main()
 		return 0;
 	}
 }
-*/
-/* //20.Doubt.
-#include <stdio.h>
-#include <stdlib.h>
-
-int main() {
-    // Create a temporary file
-    FILE *tempFile = tmpfile();
-
-    if (tempFile == NULL) {
-        perror("Failed to create temporary file");
-        return 1;
-    }
-
-    // Write some data to it
-    const char *data = "This is a temporary file.\n";
-    fputs(data, tempFile);
-
-    // Move file pointer to beginning to read the data back
-    rewind(tempFile);
-
-    // Read and print the data
-    char buffer[256];
-    while (fgets(buffer, sizeof(buffer), tempFile) != NULL) {
-        printf("%s", buffer);
-    }
-
-    // Temporary file is automatically deleted when closed
-    fclose(tempFile);
-
-    return 0;
-}
-*/
-/* check wheter it is an file or directory.
+```
+21.Program to check wheter it is an file or directory.
+```c
 #include<stdio.h>
 #include<sys/stat.h>
 #include<unistd.h>
@@ -544,8 +519,9 @@ int main()
 	}
 	return 0;
 }
-*/
-/* //program to create a link to a file to file.
+```
+22.program to create a link to a file to file.
+```c
 #include<stdio.h>
 #include<unistd.h>
 int main()
@@ -562,38 +538,9 @@ int main()
 	}
 	return 0;
 }
-*/
-/* 23.doubt
-#include <stdio.h>
-#include <fcntl.h>
-#include <unistd.h>
-
-int main() {
-    const char *filename = "data.csv";
-    char buffer[1024];
-    int fd, bytes_read;
-
-    // Open the CSV file in read-only mode
-    fd = open(filename, O_RDONLY);
-    if (fd < 0) {
-        perror("Error opening file");
-        return 1;
-    }
-
-    // Read and display contents
-    while ((bytes_read = read(fd, buffer, sizeof(buffer))) > 0) {
-        write(STDOUT_FILENO, buffer, bytes_read);  // Output to standard output
-    }
-
-    if (bytes_read < 0) {
-        perror("Error reading file");
-    }
-
-    close(fd);
-    return 0;
-}
-*/
-/* //program to get the path of an current working directory.
+```
+23.Program to get the path of an current working directory.
+```c
 #include<stdio.h>
 #include<unistd.h>
 #include<limits.h>
@@ -609,59 +556,9 @@ int main()
 	}
 	return 0;
 }
-*/
-/* //25.Doubt.
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <dirent.h>
-#include <sys/stat.h>
-
-long get_directory_size(const char *path) {
-    struct dirent *entry;
-    struct stat file_stat;
-    DIR *dir = opendir(path);
-    long total_size = 0;
-
-    if (dir == NULL) {
-        perror("Error opening directory");
-        return -1;
-    }
-
-    while ((entry = readdir(dir)) != NULL) {
-        char full_path[1024];
-
-        // Ignore "." and ".."
-        if (strcmp(entry->d_name, ".") == 0 || strcmp(entry->d_name, "..") == 0)
-            continue;
-
-        snprintf(full_path, sizeof(full_path), "%s/%s", path, entry->d_name);
-
-        if (stat(full_path, &file_stat) == 0) {
-            if (S_ISREG(file_stat.st_mode)) {
-                total_size += file_stat.st_size;  // Add file size
-            } else if (S_ISDIR(file_stat.st_mode)) {
-                total_size += get_directory_size(full_path);  // Recurse for subdirectories
-            }
-        }
-    }
-
-    closedir(dir);
-    return total_size;
-}
-
-int main() {
-    const char *directory = "Documents";
-    long size = get_directory_size(directory);
-
-    if (size >= 0) {
-        printf("Total size of directory \"%s\": %ld bytes\n", directory, size);
-    }
-
-    return 0;
-}
-*/
-/* create a fifo.
+```
+24.Program to create a fifo.
+```c
 #include<stdio.h>
 #include<sys/types.h>
 #include<sys/stat.h>
@@ -678,8 +575,9 @@ int main()
 	}
 	return 0;
 }
-*/
-/* //print the contents present in an myfifo.
+```
+25.Program to print the contents present in an myfifo.
+```c
 #include<stdio.h>
 #include<fcntl.h>
 #include<unistd.h>
@@ -707,8 +605,9 @@ int main()
 	close(fd);
 	return 0;
 }
-*/
-/*  //truncate the filenamed to an speceifed length.
+```
+26.Program to truncate the filenamed to an speceifed length.
+```c
 #include<stdio.h>
 #include<unistd.h>
 int main()
@@ -727,8 +626,9 @@ int main()
 	}
 	return 0;
 }
-*/
-/* //to Search for an specific string in file and display the line number where it occurs.
+```
+27.Program to Search for an specific string in file and display the line number where it occurs.
+```c
 #include<stdio.h>
 #include<string.h>
 int main()
@@ -761,9 +661,9 @@ int main()
 	fclose(file);
 	return 0;
 }
-*/
-
-/* program to get the file type.
+```
+28.program to get the file type.
+```c
 #include<stdio.h>
 #include<sys/stat.h>
 #include<unistd.h>
@@ -788,8 +688,9 @@ int main()
 		printf("%s is an unknown type.\n",path);
 	return 0;
 }
-*/
-/* //create an empty file.
+```
+29.Program to create an empty file.
+```c
 #include<stdio.h>
 #include<fcntl.h>
 #include<unistd.h>
@@ -806,8 +707,9 @@ int main()
 	close(fd);
 	return 0;
 }
-*/
-/* //create an empty file.
+```
+30.Program to create an empty file(another way).
+```c
 #include<stdio.h>
 #include<sys/stat.h>
 int main()
@@ -822,8 +724,9 @@ int main()
 	printf("Permissions: %o\n",st.st_mode &0777);
 	return 0;
 }
-*/
-/* //program to get an permissions mode of an given file.
+```
+31.Program to get an permissions mode of an given file.
+```c
 #include<stdio.h>
 #include<sys/stat.h>
 void print_permissions(mode_t mode)
@@ -857,8 +760,9 @@ int main()
 	printf(" (octal: %o)\n",st.st_mode & 0777);
 	return 0;
 }
-*/
-/* program to print the 10 lines of the file.
+```
+32.program to print the 10 lines of the file.
+```c
 #include<stdio.h>
 int main()
 {
@@ -878,8 +782,9 @@ int main()
 	fclose(fp);
 	return 0;
 }
-*/
-/* //program to read the file from another file and print in reverse order.
+```
+33.Program to read the file from another file and print in reverse order.
+```c
 #include<stdio.h>
 #include<stdlib.h>
 int main()
@@ -904,8 +809,9 @@ int main()
 	printf("Contents of written in reverse to \n");
 	return 0;
 }
-*/
-/* //create a directory with an date,month and year.
+```
+34.program to create a directory with an date,month and year.
+```c
 #include<stdio.h>
 #include<stdlib.h>
 #include<time.h>
@@ -927,8 +833,9 @@ int main()
 	}
 	return 0;
 }
-*/ 
-/* // Read and Display the contents of an binary file.
+```
+35.program to Read and Display the contents of an binary file.
+```c
 #include<stdio.h>
 int main()
 {
@@ -956,8 +863,9 @@ int main()
 	fclose(file);
 	return 0;
 }
-*/
-/* //create a binary file and content to it.
+```
+36.Program to create a binary file and content to it.
+```c
 #include<stdio.h>
 int main()
 {
@@ -980,8 +888,9 @@ int main()
 	fclose(file);
 	return 0;
 }
-*/
-/* //program to check which is an large file.
+```
+37.Program to check which is an large file.
+```c
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
@@ -1025,8 +934,9 @@ int main()
 	}
 	return 0;
 }
-*/
-/* //check whether the file is readable or not.
+```
+38.Program to check whether the file is readable or not.
+```c
 #include<stdio.h>
 #include<unistd.h>
 int main()
@@ -1042,8 +952,9 @@ int main()
 	}
 	return 0;
 }
-*/ 
-/* //create a new directory named and move all files with extension into it.
+```
+39.Program to create a new directory named and move all files with extension into it.
+```c
 #include<stdio.h>
 #include<stdlib.h>
 int main()
@@ -1059,8 +970,9 @@ int main()
 	}
 	return 0;
 }
-*/
-/* to check whether a file is writable or not.
+```
+40.Program to check whether a file is writable or not.
+```c
 #include<stdio.h>
 #include<unistd.h>
 int main()
@@ -1075,17 +987,9 @@ int main()
 	}
 	return 0;
 }
-*/
-/*
-#include<stdio.h>
-#include<stdlib.h>
-int main()
-{
-	system("sh linked.txt");
-	return 0;
-}
-*/
-/*
+```
+41.program to get the number of hard links to a file "linked.txt".
+```c
 #include<stdio.h>
 #include<sys/stat.h>
 int main()
@@ -1100,8 +1004,9 @@ int main()
 	printf("NUmber of hardlinks to %s: %lu\n",filename,(unsigned long)st.st_nlink);
 	return 0;
 }
-*/
-/* //program to combine all text files to another text file.
+```
+42.Program to combine all text files to another text file.
+```c
 #include<stdio.h>
 #include<stdlib.h>
 int main()
@@ -1117,35 +1022,9 @@ int main()
 	}
 	return 0;
 }
-*/
-/* //Another way to copy the all text files to one single text file.
-#include<stdio.h>
-#include<stdlib.h>
-#include<dirent.h>
-int main()
-{
-	DIR *dir=opendir(".");
-	if(!dir)
-	{
-		perror("opendir");
-		return 1;
-	}
-	FILE *combined=fopen("combined.txt","w");
-	if(!combined)
-	{
-		perror("fopen combined.txt");
-		closedir(dir);
-		return 1;
-	}
-	struct dirent *entry;
-	char buffer[1024];
-	while((entry=readdir(dir))!=NULL)
-	{
-		if()
-	}
-}
-*/
-/* //create a new directory named with current timestamp in format "YYYY-MM-DD-HH-MM-SS".
+```
+43.Program to create a new directory named with current timestamp in format "YYYY-MM-DD-HH-MM-SS".
+```c
 #include<stdio.h>
 #include<stdlib.h>
 #include<time.h>
@@ -1167,8 +1046,9 @@ int main()
 	}
 	return 0;
 }
-*/
-/* //create a directory named Document.
+```
+44.Program to create a directory named Document.
+```c
 #include<stdio.h>
 #include<sys/types.h>
 #include<sys/stat.h>
@@ -1183,8 +1063,9 @@ int main()
 		printf("created Sucessfully.");
 	}
 }
-*/
-/* //check whether a file is present or not.
+```
+45.Program to check whether a file is present or not.
+```c
 #include<stdio.h>
 #include<unistd.h>
 int main()
@@ -1199,8 +1080,9 @@ int main()
 		printf("File does not Exists");
 	}
 }
-*/
-/* //open a file and print it.
+```
+46.Program to open a file and print it.
+```c
 #include<stdio.h>
 int main()
 {
@@ -1218,8 +1100,9 @@ int main()
 	fclose(fp);
 	return 0;
 }
-*/
-/* //Copy the Contents from an one file to an another an file.
+```
+47.Program to Copy the Contents from an one file to an another an file.
+```c
 #include<stdio.h>
 #include<stdlib.h>
 int main()
@@ -1247,7 +1130,9 @@ int main()
 	fclose(dest);
 	return 0;
 }
-*/
+```
+48.program to copy the elements from an one file to an another file.(Different way)
+```c
 #include<stdio.h>
 int main()
 {
@@ -1263,3 +1148,4 @@ int main()
 	}
 	return 0;
 }
+```
