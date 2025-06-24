@@ -143,4 +143,49 @@ int main()
     return 0;
 }
 ```
-6.
+6.program to demonstrate the use of the system() function for executing shell 
+commands
+```c
+#include<stdio.h>
+#include<stdlib.h>
+int main()
+{
+    printf("List the files in directory");
+    system("ls");
+    printf("print the current working directory: ");
+    system("pwd");
+    printf("print date and time: ");
+    system("date");
+    printf("files date and permissions: ");
+    system("ls -l");
+    return 0;
+}
+```
+7.Program to create an process using fork() and pass arguments to child process.
+```c
+#include<stdio.h>
+#include<stdlib.h>
+#include<unistd.h>
+#include<sys/types.h>
+int main()
+{
+    int pid=fork();
+    if(pid<0)
+    {
+        perror("fork failed");
+        exit(1);
+    }
+    if(pid==0)
+    {
+        printf("Chlid: Executing ls command...\n");
+        execlp("/bin/ls","ls","-l",NULL);
+        perror("execlp failed"); //Execute only when execlp fails.
+    }
+    else
+    {
+        printf("Parent: Created child with PID=%d",pid);
+    }
+    return 0;
+}
+```
+8.
