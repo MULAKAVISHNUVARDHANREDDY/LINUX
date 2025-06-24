@@ -1149,3 +1149,50 @@ int main()
 	return 0;
 }
 ```
+49.Program to get the size of an file named "image.jpg".
+```c
+#include <stdio.h>
+#include <sys/stat.h>
+int main() {
+    const char *filename = "image.jpg";
+    struct stat st;
+    if (stat(filename, &st) == 0) {
+        printf("Size of \"%s\": %d bytes\n", filename, (int)st.st_size);
+    } else {
+        perror("stat");
+        return 1;
+    }
+    return 0;
+}
+```
+50.Program to count the number of words present in "linked.txt".
+```c
+#include<stdio.h>
+#include<ctype.h>
+int main()
+{
+	FILE *vis=fopen("linked.txt","r");
+	if(!vis)
+	{
+		perror("Error opening a file");
+		return 1;
+	}
+	int word=0,word_count=0;
+	int ch;
+	while((ch=fgetc(vis))!=EOF)
+	{
+		if(isspace(ch))
+		{
+			word=0;
+		}
+		else if(!word)
+		{
+			word=1;
+			word_count++;
+		}
+	}
+	fclose(vis);
+	printf("Total number of words %d:",word_count);
+	return 0;
+}
+```
