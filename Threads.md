@@ -333,7 +333,7 @@ int main()
 }
 ```
 13.Program to print the create a thread that generates random numbers and syncronizes access to shared buffer.
-```
+```c
 #include<stdio.h>
 #include<stdlib.h>
 #include<time.h>
@@ -395,7 +395,7 @@ int main()
 }
 ```
 15.program to create a thread performs addition of two numbers with mutex locks.
-```
+```c
 #include<stdio.h>
 #include<pthread.h>
 pthread_mutex_t lock;
