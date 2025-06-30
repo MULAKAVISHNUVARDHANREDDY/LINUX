@@ -462,3 +462,298 @@ int main()
 
 }
 ```
+17.Program to check if its a leap year by creating thread with mutex locks.
+```c
+#include<stdio.h>
+#include<pthread.h>
+pthread_mutex_t lock;
+void *leapyear(void *args)
+{
+    int year=*(int *)args;
+    pthread_mutex_lock(&lock);
+    if((year%4==0 && year%100!=0)|| year%400==0)
+    {
+        printf("Leap year:%d\n",year);
+    }
+    else
+    {
+        printf("Not Leap year:%d\n",year);
+    }
+    pthread_mutex_unlock(&lock);
+    return NULL;
+}
+int main()
+{
+    pthread_t id;
+    int year;
+    pthread_mutex_init(&lock,NULL);
+    printf("Enter the Year:");
+    scanf("%d",&year);
+    pthread_create(&id,NULL,leapyear,&year);
+    pthread_join(id,NULL);
+    pthread_mutex_destroy(&lock);
+    return 0;
+}
+```
+18.Program to create a thread and check if it is a palindrome with mutex locks.
+```c
+#include<stdio.h>
+#include<string.h>
+#include<pthread.h>
+char str[100];
+pthread_mutex_t lock;
+void *palindrome(void *args)
+{
+    int start=0;
+    int end=strlen(str)-1;
+    int palindrome=1;
+    pthread_mutex_lock(&lock);
+    while(start<end)
+    {
+        char a=str[start];
+        char b=str[end];
+        if(a>='A' && a<='Z')
+            a+=32;
+        if(b>='A' && b<='Z')
+            b+=32;
+        if(a!=b)
+        {
+            palindrome=0;
+            break;
+        }
+        start++;
+        end--;
+    }
+    if(palindrome)
+        printf("%s is an palindrome\n",str);
+    else
+        printf("%s is not an palindrome\n",str);
+    pthread_mutex_unlock(&lock);
+    return NULL;
+}
+int main()
+{
+    pthread_t id;
+    printf("Enter the String:");
+    scanf("%s",str);
+    pthread_mutex_init(&lock,NULL);
+    pthread_create(&id,NULL,palindrome,NULL);
+    pthread_join(id,NULL);
+    pthread_mutex_destroy(&lock);
+    return 0;
+}
+```
+19.Program to create a thread and calculate an area of an triangle.
+```c
+#include<stdio.h>
+#include<pthread.h>
+struct triangle
+{
+    float base;
+    float height;
+}t;
+void *areaoftriangle(void *args)
+{
+    struct triangle *t=(struct triangle *)args;
+    printf("Area of triangle is: \n");
+    float area= 0.5 * t->base * t->height;
+    printf("%f",area);
+    return NULL;
+}
+int main()
+{
+    pthread_t id;
+    struct triangle t;
+    printf("Enter Base: ");
+    scanf("%f",&t.base);
+    printf("Enter height: ");
+    scanf("%f",&t.height);
+    pthread_create(&id,NULL,areaoftriangle,&t);
+    pthread_join(id,NULL);
+    return 0;
+}
+```
+20.Program to create thread and print random array of integers.
+```c
+#include<stdio.h>
+#include<stdlib.h>
+#include<pthread.h>
+#include<time.h>
+#define size 5
+int arr[size];
+void *randomarrayintegers(void *args)
+{
+    srand(time(NULL));
+    for(int i=0;i<size;i++)
+    {
+        arr[i]=rand()%100;
+    }
+    pthread_exit(NULL);
+}
+int main()
+{
+    pthread_t id;
+    pthread_create(&id,NULL,randomarrayintegers,NULL);
+    pthread_join(id,NULL);
+    for(int i=0;i<size;i++)
+    {
+        printf("%d\n",arr[i]);
+    }
+    return 0;
+}
+```
+21.program to create a thread that calculates the greatest common divisor (GCD)of two numbers
+```c
+#include<stdio.h>
+#include<pthread.h>
+struct numbers
+{
+    int a;
+    int b;
+};
+void *GCD(void *args)
+{
+    struct numbers *n=(struct numbers *)args;
+    int a=n->a;
+    int b=n->a;
+    while(b!=0)
+    {
+        int temp=b;
+        b=a%b;
+        a=temp;
+    }
+    printf("GCD of %d and %d is %d\n",n->a,n->b,a);
+    return NULL;
+}
+int main()
+{
+    pthread_t id;
+    struct numbers n;
+    printf("Enter the value a:");
+    scanf("%d",&n.a);
+    printf("Enter the value b:");
+    scanf("%d",&n.b);
+    pthread_create(&id,NULL,GCD,&n);
+    pthread_join(id,NULL);
+    return 0;
+}
+```
+22.Program to calculate the sum of fibonacci limit by creating threrads.
+```c
+#include<stdio.h>
+#include<pthread.h>
+struct input
+{
+    int limit;
+};
+void *fibonacci(void *args)
+{
+    struct input *limit=(struct input*)args;
+    int n=limit->limit;
+    int a=0,b=1,sum=0,next;
+    if(n<=0)
+    {
+        printf("sum=0\n");
+        return NULL;
+    }
+    sum=a+b;
+    for(int i=2;i<=n;i++)
+    {
+        next=sum;
+        sum+=next;
+        a=b;
+        b=next;
+    }
+    printf("Sum of fibonacci %d is %d\n",n+1,sum);
+    return NULL;
+}
+int main()
+{
+    pthread_t id;
+    struct input limit;
+    printf("Enter the limit:");
+    scanf("%d",&limit.limit);
+    pthread_create(&id,NULL,fibonacci,&limit);
+    pthread_join(id,NULL);
+    return 0;
+}
+```
+23.Program to create a thread and print sum of even numbers 1 to 100.
+```c
+#include<stdio.h>
+#include<stdlib.h>
+#include<pthread.h>
+int sum=0;
+void *sumeven(void *args)
+{
+    for(int i=2;i<=100;i+=2)
+    {
+        sum+=i;
+    }
+    return NULL;
+}
+int main()
+{
+    pthread_t id;
+    // printf("Enter the limit: ");
+    // scanf("%d",&limit);
+    pthread_create(&id,NULL,sumeven,NULL);
+    pthread_join(id,NULL);
+    printf("Sum of Even=%d",sum);
+    return 0;
+}
+```
+24.Program to create the thread and print factorial of a numbers.
+```
+#include<stdio.h>
+#include<pthread.h>
+void *factorial(void *args)
+{
+    int num=*(int *)args;
+    int result=1;
+    for(int i=1;i<=num;i++)
+    {
+        result*=i;
+    }
+    printf("Factoril %d is:%d\n",num,result);
+    return NULL;
+}
+int main()
+{
+    pthread_t id;
+    int num;
+    printf("Enter the NUmber: ");
+    scanf("%d",&num);
+    pthread_create(&id,NULL,factorial,&num);
+    pthread_join(id,NULL);
+    return 0;
+}
+```
+25.Program to create a pthread and check if the given year is leap year or not.
+```c
+#include<stdio.h>
+#include<pthread.h>
+void *leapyear(void *args)
+{
+    int year=*(int *)args;
+    if(year%4==0&&year%100!=0 ||year%400==0)
+    {
+        printf("Year %d id Leap Year",year);
+    }
+    else
+    {
+        printf("Year %d is Not a leap Year",year);
+    }
+    return NULL;
+}
+int main()
+{
+    pthread_t id;
+    int year;
+    printf("Enter the year: ");
+    scanf("%d",&year);
+    pthread_create(&id,NULL,leapyear,&year);
+    pthread_join(id,NULL);
+    return 0;
+}
+```
