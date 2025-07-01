@@ -188,4 +188,18 @@ int main()
     return 0;
 }
 ```
-8.
+8.program to demonstrate the use of an execvpe() function.
+```c
+#include<stdio.h>
+#include<stdlib.h>
+#include<unistd.h>
+int main()
+{
+    char *args[]={"ls","-l",NULL};
+    if(execvp("/bin/ls",args)==-1)
+    {
+        perror("execvp failed");
+    }
+    return 0;
+}
+```
