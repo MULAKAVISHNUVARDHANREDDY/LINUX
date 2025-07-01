@@ -884,4 +884,36 @@ int main()
     return 0;
 }
 ```
-29.
+29.Program to create a thread and calculates the sum of digits ofgiven number.
+```c
+#include<stdio.h>
+#include<pthread.h>
+struct number
+{
+    int n;
+};
+void *sumofnum(void *args)
+{
+    struct number *num=(struct number *)args;
+    int sum=0,rem;
+    int n=num->n;
+    while(n>0)
+    {
+        rem=n%10;
+        sum=sum+rem;
+        n=n/10;
+    }
+    printf("%d",sum);
+    return NULL;
+}
+int main()
+{
+    pthread_t id;
+    struct number num;
+    printf("Enter the number: ");
+    scanf("%d",&num.n);
+    pthread_create(&id,NULL,sumofnum,&num);
+    pthread_join(id,NULL);
+}
+```
+30.
