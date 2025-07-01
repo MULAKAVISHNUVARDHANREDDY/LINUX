@@ -757,3 +757,131 @@ int main()
     return 0;
 }
 ```
+26.Program to create a thread and calcuate the multiplication of two matrices.
+```c
+#include<stdio.h>
+#include<pthread.h>
+void *matrix(void *args)
+{
+    int arr1[50][50],arr2[50][50],i,j,m,n,mul[10][10];
+    printf("Enter the numbers of rows and coloums:\n");
+    scanf("%d%d",&m,&n);
+    printf("Elements for 1 matrix:\n");
+    for(i=0;i<m;i++)
+    {
+        for(j=0;j<n;j++)
+        {
+            scanf("%d",&arr1[i][j]);
+        }
+    }
+    printf("Elements for 2 matrix:\n");
+    for(i=0;i<m;i++)
+    {
+        for(j=0;j<n;j++)
+        {
+            scanf("%d",&arr2[i][j]);
+        }
+    }
+    for(i=0;i<m;i++)
+    {
+        for(j=0;j<n;j++)
+        {
+            mul[i][j]=(arr1[i][j] * arr2[i][j]);
+        }
+    }
+    for(i=0;i<m;i++)
+    {
+        for(j=0;j<n;j++)
+        {
+            printf("%d \n",arr1[i][j]);
+        }
+    }
+    for(i=0;i<m;i++)
+    {
+        for(j=0;j<n;j++)
+        {
+            printf("%d \n",arr2[i][j]);
+        }
+    }
+    for(i=0;i<m;i++)
+    {
+        for(j=0;j<n;j++)
+        {
+            printf("%d \n",mul[i][j]);
+        }
+      //  printf("\t");
+        printf("\n");
+    }
+    return NULL;
+}
+int main()
+{
+    pthread_t id;
+    pthread_create(&id,NULL,matrix,NULL);
+    pthread_join(id,NULL);
+    return 0;
+}
+```
+27.Program to create a thread and cacluate the average of an 1 to 100 numbers.
+```c
+#include<stdio.h>
+#include<pthread.h>
+void *average(void *args)
+{
+    int start=0,end=100;
+    float avg,sum=0;
+    while(start<=end)
+    {
+        sum+=start;
+        start++;
+    }
+    avg=(sum/end);
+    printf("%.2f avf of %d ,Sum=%.2f",avg,end,sum);
+    return NULL;
+}
+int main()
+{
+    pthread_t id;
+    pthread_create(&id,NULL,average,NULL);
+    pthread_join(id,NULL);
+    return 0;
+}
+```
+28.Program to create a thread to check the perfect square of an given number.
+```c
+#include<stdio.h>
+#include<pthread.h>
+struct square
+{
+    int n;
+};
+void *perfect_square(void *args)
+{
+    struct square *num=(struct square *)args;
+    int i=1;
+    while(i*i<num->n)
+    {
+        i++;
+    }
+    if(i*i==num->n)
+    {
+        printf("Perfect Square:");
+    }
+    else
+    {
+        printf("not a Perfect Square:");
+    }
+    return NULL;
+}
+int main()
+{
+    pthread_t id;
+    struct square num;
+    printf("Enter a number: ");
+    scanf("%d",&num.n);
+    pthread_create(&id,NULL,perfect_square,&num);
+    pthread_join(id,NULL);
+    return 0;
+}
+```
+29.
