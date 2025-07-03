@@ -916,4 +916,125 @@ int main()
     pthread_join(id,NULL);
 }
 ```
-30.
+30.Program to create a thread and calculate factorial of num using recursivly.
+```c
+#include<stdio.h>
+#include<pthread.h>
+int num;
+int result;
+int factorial(int n)
+{
+    if(n<=1)
+        return 1;
+    return n*factorial(n-1);
+}
+void *compute_factorial(void *arg)
+{
+    result=factorial(num);
+    return NULL;
+}
+int main()
+{
+    pthread_t id;
+    printf("Enter the number: ");
+    scanf("%d",&num);
+    if(num<=0)
+    {
+        printf("Factorial is not defined for negative numbers.\n");
+        return 1;
+    }
+    pthread_create(&id,NULL,compute_factorial,NULL);
+    pthread_join(id,NULL);
+    printf("Factorial of %d is: %d",num,result);
+    return 1;
+}
+```
+31.program to create a thread and find max and min in an array.
+```c
+#include<stdio.h>
+#include<pthread.h>
+int arr[5]={8,3,1,5,6};
+int max,min;
+void *maxandmin(void *args)
+{
+   // int num=*(int *)args;
+    int i;
+    max=arr[0];
+    min=arr[0];
+    for(i=1;i<5;i++)
+    {
+        if(arr[i]>max)
+            max=arr[i];
+        if(arr[i]<min)
+            min=arr[i];
+    }
+    return NULL;
+}
+int main()
+{
+    pthread_t id;
+    pthread_create(&id,NULL,maxandmin,NULL);
+    pthread_join(id,NULL);
+    printf("MAX: %d,MIN: %d",max,min);
+    return 0;
+}
+```
+32.Program to create a thread and get an square root of an number.
+```c
+#include<stdio.h>
+#include<pthread.h>
+#include <math.h>
+int number;
+void *square(void *args)
+{
+    double result;
+    if(number<0)
+    {
+        printf("Negative numbers are invalid.\n");
+    }
+    else
+    {
+        result=sqrt(number);
+        printf("SquareRoot: %.2f",result);
+    }
+    return NULL;
+}
+int main()
+{
+    pthread_t id;
+    printf("Enter the number: ");
+    scanf("%d",&number);
+    pthread_create(&id,NULL,square,NULL);
+    pthread_join(id,NULL);
+    return 0;
+}
+```
+33.Program to create thread to find the average of elements in an array.
+```c
+#include<stdio.h>
+#include<pthread.h>
+#define size 10
+int arr[size]={1,2,3,4,5,6,7,8,9,10};
+float average=0;
+void *averageofarray(void *args)
+{
+    int i;
+    float sum=0;
+    for(i=0;i<size;i++)
+    {
+        sum+=arr[i];
+    }
+    average=(float)sum/size;
+    return NULL;
+}
+int main()
+{
+    pthread_t id;
+    pthread_create(&id,NULL,averageofarray,NULL);
+    pthread_join(id,NULL);
+    printf("Average:%.2f",average);
+    return 0;
+}
+```
+34.
+
