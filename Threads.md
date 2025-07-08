@@ -1130,5 +1130,100 @@ int main()
     return 0;
 }
 ```
-37.
-
+37.program to create a thread to calcuate sum of array elements.
+```c
+#include<stdio.h>
+#include<pthread.h>
+int arr[10]={1,2,3,4,5,6,7,8,9};
+int sum=0;
+void *sumofarray(void *args)
+{
+    //int arr=(int *)args;
+    for(int i=0;i<10;i++)
+    {
+        sum+=arr[i];
+    }
+    return NULL;
+}
+int main()
+{
+    pthread_t add;
+    pthread_create(&add,NULL,sumofarray,NULL);
+    pthread_join(add,NULL);
+    printf("Sum=%d",sum);
+    return 0;
+}
+```
+38.program to create a thread that calculates the factorial of numbers from 1 to 10.
+```c
+#include<stdio.h>
+#include<pthread.h>
+void *factorial(void *args)
+{
+    int num=*(int *)args;
+    long long product=1;
+    for(int i=1;i<=num;i++)
+    {
+        product*=i;
+    }
+    printf("factorial:%lld",product);\
+    pthread_exit(NULL);
+}
+int main()
+{
+    pthread_t krishna;
+    int num;
+    printf("Enter the number below<=10: ");
+    scanf("%d",&num);
+    pthread_create(&krishna,NULL,factorial,&num);
+    pthread_join(krishna,NULL);
+    return 0;
+}
+```
+39.program to create a thread and calculate the area of rectangle.
+```c
+#include<stdio.h>
+#include<pthread.h>
+void areaofrectangle(void *args)
+{
+    int length=10;
+    int breadth=10;
+    int result=length*breadth;
+    printf("Areaofrectangle:%d",result);
+    pthread_exit(NULL);
+}
+int main()
+{
+    pthread_t veeru;
+    pthread_create(&veeru,NULL,areaofrectangle,NULL);
+    pthread_join(veeru,NULL);
+    return 0;
+}
+```
+40.Program to create a thread to generate an random numbers.
+```c
+#include<stdio.h>
+#include<stdlib.h>
+#include<pthread.h>
+#include<time.h>
+void *randomnumbers(void *args)
+{
+    //int n=*(int *)args;
+    int result;
+    srand(time(NULL));
+    result=rand()%100;
+    printf("Result: %d",result);
+    pthread_exit(NULL);
+}
+int main()
+{
+    pthread_t Aaketi;
+    int n,result;
+    // printf("Enter the number: ");
+    // scanf("%d",&n);
+    pthread_create(&Aaketi,NULL,randomnumbers,NULL);
+    pthread_join(Aaketi,NULL);
+    return 0;
+}
+```
+41.
