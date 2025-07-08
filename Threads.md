@@ -1036,5 +1036,99 @@ int main()
     return 0;
 }
 ```
-34.
+34.program to create a thread that generates a random password?
+```c
+#include<stdio.h>
+#include<stdlib.h>
+#include<pthread.h>
+#include<time.h>
+#define max_len 20
+char password[max_len+1];
+int length;
+void *random_password(void *args)
+{
+    const char charset[]="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$^&*()_+{}|?><";
+    int charset_len=sizeof(charset)-1;
+    srand(time(NULL));
+    for(int i=0;i<length;i++)
+    {
+        int index=rand()%charset_len;
+        password[i]=charset[index];
+    }
+    password[length]='\0';
+    pthread_exit(NULL);
+}   
+int main()
+{
+    pthread_t thread;
+    printf("Enter desired password length(%d):",max_len);
+    scanf("%d",&length);
+    if(length<=0||length>max_len)
+    {
+        printf("Invalid length.please enter valid length(%d)",max_len);
+        return 1;
+    }
+    pthread_create(&thread,NULL,random_password,NULL);
+    pthread_join(thread,NULL);
+    printf("Generated random password: %s\n",password);
+    return 0;
+}
+```
+35.program to create a thread that generates a random password? 
+```c
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+#include<pthread.h>
+#include<time.h>
+char password[21];
+void *random_password(void *args)
+{
+    const char charset[]="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$^&*()_+|}{:?><}";
+    int charset_len=strlen(charset);
+    srand(time(NULL));
+    for(int i=0;i<20;i++)
+    {
+        password[i]=charset[rand()%charset_len];
+    }
+    password[20]='\0';
+}
+int main()
+{
+    pthread_t thread;
+    pthread_create(&thread,NULL,random_password,NULL);
+    pthread_join(thread,NULL);
+    printf("random password: %s\n",password);
+    return 0;
+}
+```
+36.program to create a thread and print even or odd.
+```c
+#include<stdio.h>
+#include<pthread.h>
+void *prime_numbers(void *args)
+{
+    int num=*(int *)args;
+    if(num % 2==0)
+    {
+        printf("Even number: %d",num);
+    }
+    else
+    {
+        printf("Odd number: %d",num);
+    }
+    pthread_exit(NULL);
+}
+int main()
+{
+    pthread_t thread;
+    int num;
+    printf("Enter the number: ");
+    scanf("%d",&num);
+    pthread_create(&thread,NULL,prime_numbers,&num);
+    pthread_join(thread,NULL);
+    return 0;
+}
+```
+37.
 
