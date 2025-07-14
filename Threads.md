@@ -1226,4 +1226,199 @@ int main()
     return 0;
 }
 ```
-41.
+41.Program to create a thread and sort the array.
+```c
+#include<stdio.h>
+#include<pthread.h>
+#define size 10
+int arr[size]={21,1,23,2,34,4,3,45,90,100};
+void *sortarray(void *args)
+{
+    int temp;
+    for(int i=0;i<size;i++)
+    {
+        for(int j=1;j<size-i;j++)
+        {
+            if(arr[j]<arr[j-1])
+            {
+                temp=arr[j];
+                arr[j]=arr[j-1];
+                arr[j-1]=temp;
+            }
+        }
+    }
+    for(int i=0;i<size;i++)
+    {
+        printf("After Sorting:%d\n",arr[i]);
+    }
+    pthread_exit(NULL);
+}
+int main()
+{
+    pthread_t sortingarray;
+    for(int i=0;i<size;i++)
+    {
+    printf("original Array: %d\n",arr[i]);
+    }
+    pthread_create(&sortingarray,NULL,sortarray,NULL);
+    pthread_join(sortingarray,NULL);
+    return 0;
+}
+```
+42.Program to create a thread and reverse the string.
+```c
+#include<stdio.h>
+#include<pthread.h>
+#include<string.h>
+char str[10]={"vishnu"};
+void *reversingstring(void *args)
+{
+    int len=*(int *)args;
+    for(int i=len-1;i>=0;i--)
+    {
+        printf("reversed string: %c\n",str[i]);
+    }
+    pthread_exit(NULL);
+}
+int main()
+{
+    pthread_t string;
+    int len=strlen(str);
+    pthread_create(&string,NULL,reversingstring,&len);
+    pthread_join(string,NULL);
+    return 0;
+}
+```
+43.Program to create a thread that reads input from the user.
+```c
+#include<stdio.h>
+#include<pthread.h>
+int n;
+void *inputfromuser(void *args)
+{
+    printf("result: %d",n);
+    pthread_exit(NULL);
+}
+int main()
+{
+    pthread_t from;
+    printf("Enter INput: ");
+    scanf("%d",&n);
+    pthread_create(&from,NULL,inputfromuser,NULL);
+    pthread_join(from,NULL);
+    return 0;
+}
+```
+44.Program to  create a thread and add the two matrices.
+```c
+#include<stdio.h>
+#include<pthread.h>
+int mat1[3][3],mat2[3][3],add[3][3];
+void *matrics1(void *args)
+{
+    int num=4;
+    for(int i=0;i<3;i++)
+    {
+        for(int j=0;j<3;j++)
+        {
+            mat1[i][j]=num++;
+        }
+    }
+    return NULL;
+}
+void *matrics2(void *args)
+{
+    int num=1;
+    for(int i=0;i<3;i++)
+    {
+        for(int j=0;j<3;j++)
+        {
+            mat2[i][j]=num++;
+        }
+    }
+    return NULL;
+}
+void *addition(void *args)
+{
+    for(int i=0;i<3;i++)
+    {
+        for(int j=0;j<3;j++)
+        {
+            add[i][j]=mat1[i][j]+mat2[i][j];
+            printf("%3d",add[i][j]);
+        }
+        printf("\n");
+    }
+    return NULL;
+}
+int main()
+{
+    pthread_t mat1,mat2,add;
+    pthread_create(&mat1,NULL,matrics1,NULL);
+    pthread_join(mat1,NULL);
+    pthread_create(&mat2,NULL,matrics2,NULL);
+    pthread_join(mat2,NULL);
+    pthread_create(&add,NULL,addition,NULL);
+    pthread_join(add,NULL);
+    return 0;
+}
+```
+45.Program to create a thread find length of an given string.
+```c
+#include<stdio.h>
+#include<pthread.h>
+#include<string.h>
+#include<ctype.h>
+void *stringlength(void *args)
+{
+    char *str=(char *)args;
+    str[strcspn(str, "\n")] = '\0';
+    int i=0,len=0;
+    while(str[i]!='\0')
+    {
+        // if(str[i]=='\n')
+        // {
+        //     str[i]='\0';
+        //     break;
+        // }
+        if(isalpha(str[i]))
+            len++;
+        i++;
+    }
+    printf("length: %d",len);
+    return NULL;
+}
+int main()
+{
+    pthread_t string;
+    printf("Enter the string: ");
+    char str[100];
+    fgets(str,sizeof(str),stdin);
+    pthread_create(&string,NULL,stringlength,str);
+    pthread_join(string,NULL);
+    return 0;
+}
+```
+46.Program to create two threads using pthreads library. Each thread should print "Hello, World!" along with its thread ID?
+```c
+#include<stdio.h>
+#include<pthread.h>
+void *thread1(void *args)
+{
+    printf("Hello!world.\nThreadid:%ld\n",pthread_self());
+}
+void *thread2(void *args)
+{
+    printf("Hello!world.\nThreadid:%ld\n",pthread_self());
+}
+int main()
+{
+    pthread_t t1,t2;
+    pthread_create(&t1,NULL,thread1,NULL);
+    pthread_create(&t2,NULL,thread2,NULL);
+    pthread_join(t1,NULL);
+    pthread_join(t2,NULL);
+    return 0;
+}
+```
+47.
