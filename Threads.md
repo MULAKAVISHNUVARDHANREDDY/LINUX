@@ -1482,7 +1482,59 @@ int main()
     return 0;
 }
 ```
-49.Program
+49.Program to demonstrate thread cancellation. Create a thread that runs an infinite loop and cancels it after a certain condition is met from the main thread?
 ```c
 #include<stdio.h>
 #include<pthread.h>
+void *infiniteloop(void *args)
+{
+    while(printf("Thread Running: \n"))
+    {
+        sleep(1);
+    }
+    pthread_exit(NULL);
+}
+int main()
+{
+    pthread_t td1;
+    if(pthread_create(&td1,NULL,infiniteloop,NULL)!=0)
+    {
+        perror("Thread creation failed");
+        return 1;
+    }
+    sleep(5);
+    printf("Main thread cancelling worker thread.\n");
+    if(pthread_cancel(td1)!=0)
+    {
+        perror("Failed to cancel thread.\n");
+        return 1;
+    }
+    pthread_join(td1,NULL);
+    printf("Thread Cancelled Sucessfully,\n");
+    return 0;
+}
+```
+50.Program to create a thread and print 1to 20 even numbers.
+```c
+#include<stdio.h>
+#include<pthread.h>
+void *even(void *args)
+{
+    for(int i=1;i<=20;i++)
+    {
+        if(i%2==0)
+        {
+            printf("Even: %d\n",i);
+        }
+    }
+    return NULL;
+}
+int main()
+{
+    pthread_t malli;
+    pthread_create(&malli,NULL,even,NULL);
+    pthread_join(malli,NULL);
+    return 0;
+}
+```
+51.
