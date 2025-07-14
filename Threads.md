@@ -1434,8 +1434,8 @@ void *sharingvariable(void *args)
     {
         pthread_mutex_lock(&lock);
         printf("%d",num++);
-        pthread_mutex_unlock(&lock);
         i++;
+        pthread_mutex_unlock(&lock);
     }
     pthread_exit(NULL);
 }
